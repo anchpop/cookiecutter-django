@@ -7,6 +7,7 @@ from collections import namedtuple
 from pathlib import Path
 from webpack_loader import utils
 from collections import OrderedDict
+from django.urls import reverse
 import random
 
 def get_relative_url(absolute_uri):
@@ -19,7 +20,7 @@ RenderInfo = namedtuple(
 
 
 class ReactView(View):
-    DEFAULT_ROOT_COMPONENT_PATH = './src/root.js'
+    DEFAULT_ROOT_COMPONENT_PATH = './src/javascript/root.js'
     REACT_LOADABLE_FILENAME = './react-loadable.json'
 
     def get(self, request, *args, **kwargs):

@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 import collections from './collections';
 
 
-const labelSquadApp = combineReducers({
+const {{cookiecutter.project_slug}} = combineReducers({
   collections,
 });
 
-export default labelSquadApp;
+export default {{cookiecutter.project_slug}};

@@ -7,7 +7,7 @@ import Loadable from 'react-loadable';
 import { createStore } from 'redux';
 
 import App from './app';
-import labelSquadApp from './reducers';
+import {{cookiecutter.project_slug}} from './reducers';
 
 class Root extends React.Component {
   componentWillMount() {
@@ -18,7 +18,7 @@ class Root extends React.Component {
       }
     }
     //initialState = { collections: this.props.collections, projects: this.props.projects }
-    this.store = createStore(labelSquadApp, this.props);
+    this.store = createStore({{cookiecutter.project_slug}}, this.props);
   }
 
   render() {
