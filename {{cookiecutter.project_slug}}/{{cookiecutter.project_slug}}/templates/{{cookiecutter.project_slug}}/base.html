@@ -1,0 +1,51 @@
+{% raw %}{% load static %}
+{% load json %}
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <title>Webpack App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+
+    <link rel="manifest" href={% static "bundle/manifest.json" %}>
+    <link rel="shortcut icon" href={% static "bundle/favicon.ico" %}>
+    
+    <!-- Server rendered CSS -->
+    <style id="jss-server-side"> 
+      {{ rendered_css|safe }} 
+    </style>
+
+    <!-- React CSS -->
+    {% for bundle in bundles_css %}
+      {% render_bundle bundle config=app_name_upper extension='css' %} 
+    {% endfor %}
+</head>
+
+<body>
+  <!-- Server rendered HTML -->
+  <div id="root">
+    {{ rendered_html|safe }} 
+  </div>
+  <script>
+    window.props = {{ props|json|safe }} ;  // make sure we escape our props to prevent XSS! 
+    window.react_mount = document.getElementById('react');
+  </script>
+  <!-- React JS -->
+  {% for bundle in bundles_js %}
+    {% render_bundle bundle config=app_name_upper extension='-css' %}  
+  {% endfor %}
+
+  {% if debug %}
+  <script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.24.4'><\/script>".replace("HOST", location.hostname));
+  //]]></script>
+  {% endif %}
+</body>
+
+</html>
+{% endraw %}

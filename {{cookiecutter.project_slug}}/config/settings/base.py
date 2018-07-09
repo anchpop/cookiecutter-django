@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 
 import environ
+import os 
 
 ROOT_DIR = environ.Path(__file__) - 3  # ({{ cookiecutter.project_slug }}/config/settings/base.py - 3 = {{ cookiecutter.project_slug }}/)
 APPS_DIR = ROOT_DIR.path('{{ cookiecutter.project_slug }}')
@@ -75,11 +76,33 @@ THIRD_PARTY_APPS = [
     'rest_framework',
 ]
 LOCAL_APPS = [
-    '{{ cookiecutter.project_slug }}.users.apps.UsersAppConfig',
-    # Your stuff: custom apps go here
+    # Your stuff: custom apps that don't build React with Webpack go here
+]
+REACT_APPS = [
+    '{{ cookiecutter.project_slug }}',
+    # Your stuff: custom apps that use webpack to build react go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + REACT_APPS
+
+
+# React render server
+REACT = {
+    'RENDER': not DEBUG,
+    'RENDER_URL': 'http://127.0.0.1:9009/render',
+}
+# Webpack configuations
+WEBPACK_LOADER = {}
+for react_app in REACT_APPS:
+    WEBPACK_LOADER[react_app.upper()] = {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'bundle/',  # end with slash
+        'STATS_FILE': os.path.join(str(ROOT_DIR.path(react_app).path('')), 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map'],
+    }
+
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -96,11 +119,11 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-AUTH_USER_MODEL = 'users.User'
+#AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = 'users:redirect'
+#LOGIN_REDIRECT_URL = 'users:redirect'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = 'account_login'
+#LOGIN_URL = 'account_login'
 
 # PASSWORDS
 # ------------------------------------------------------------------------------

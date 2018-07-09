@@ -179,11 +179,6 @@ Answer the prompts with your own desired options_. For example::
     6 - 9.4
     7 - 9.3
     Choose from 1, 2, 3, 4 [1]: 1
-    Select js_task_runner:
-    1 - Gulp
-    2 - Grunt
-    3 - None
-    Choose from 1, 2, 3, 4 [1]: 1
     custom_bootstrap_compilation [n]: n
     Select open_source_license:
     1 - MIT

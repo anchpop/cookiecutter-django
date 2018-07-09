@@ -307,25 +307,6 @@ def main():
         if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
             append_to_gitignore_file("!.envs/.local/")
 
-    if "{{ cookiecutter.js_task_runner}}".lower() == "none":
-        remove_gulp_files()
-        remove_packagejson_file()
-    if (
-        "{{ cookiecutter.js_task_runner }}".lower() != "none"
-        and "{{ cookiecutter.use_docker }}".lower() == "y"
-    ):
-        print(
-            WARNING
-            + "Docker and {} JS task runner ".format(
-                "{{ cookiecutter.js_task_runner }}".lower().capitalize()
-            )
-            + "working together not supported yet. "
-              "You can continue using the generated project like you "
-              "normally would, however you would need to add a JS "
-              "task runner service to your Docker Compose configuration "
-              "manually." + TERMINATOR
-        )
-
     if "{{ cookiecutter.use_celery }}".lower() == "n":
         remove_celery_app()
         if "{{ cookiecutter.use_docker }}".lower() == "y":

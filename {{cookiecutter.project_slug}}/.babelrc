@@ -1,0 +1,5 @@
+{
+    "presets": ["env", "react", "stage-1"],
+    "plugins": [
+    "react-loadable/babel"]
+}

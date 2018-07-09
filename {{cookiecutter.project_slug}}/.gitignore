@@ -342,3 +342,14 @@ MailHog
 {{ cookiecutter.project_slug }}/media/
 
 .pytest_cache/
+
+
+
+### React files
+
+*/static
+
+**/webpack-stats.json
+**/react-loadable.json
+
+render_server/build
