@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import collections from './collections';
+import extra_info from './extra_info';
 
 
 const {{cookiecutter.project_slug}} = combineReducers({
-  collections,
+  extra_info,
 });
 
 export default {{cookiecutter.project_slug}};

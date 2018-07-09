@@ -1,3 +1,3 @@
-import * as collections from './collections';
+import * as collections from './extra_info';
 
 export { collections };

@@ -74,6 +74,8 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'react',
+    'webpack_loader',
 ]
 LOCAL_APPS = [
     # Your stuff: custom apps that don't build React with Webpack go here

@@ -65,7 +65,6 @@ function handleRender (toRenderFilename, props, pathToReactLoadable, res) {
 
   const generateClassName = createGenerateClassName ();
   let App = require (toRenderFilename).default;
-  console.log ('App:', App);
 
   if (pathToReactLoadable) {
     Loadable.preloadAll ().then (() => {

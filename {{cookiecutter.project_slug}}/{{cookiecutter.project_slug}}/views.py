@@ -60,14 +60,16 @@ class ReactView(View):
         if loaded_at_url.find(base_url) == 0:
             loaded_at_url = loaded_at_url[len(base_url):]
 
-        render_info.context['props']['base_url'] = base_url
-        render_info.context['props']['loaded_at_url'] = loaded_at_url
+        render_info.context['props'] = render_info.context.get('props', {})
+        render_info.context['props']['extra_info'] = {}
+        render_info.context['props']['extra_info']['base_url'] = base_url
+        render_info.context['props']['extra_info']['loaded_at_url'] = loaded_at_url
         render_info.context['app_name'] = app_name
         render_info.context['app_name_upper'] = app_name.upper()
 
         # Render the component on the server, typically for SEO reasons. If `REACT.render` is set to false in settings.py this will do nothing.
         # Set the `on_server` property to True, so you can render slightly differently on the client and server (useful for react-router)
-        render_info.context['props']['on_server'] = True
+        render_info.context['props']['extra_info']['on_server'] = True
         server_side_render = render_component(
             path_to_root_component, props=render_info.context['props'], extra_data={'path_to_react_loadable': path_to_react_loadable})
         render_info.context['rendered_html'] = server_side_render.markup
@@ -94,10 +96,10 @@ class ReactView(View):
             render_info.context['bundles_css'] = css_bundles_to_load
 
         # Set the `on_server` property to False, because we'll be sending this to the client
-        render_info.context['props']['on_server'] = False
+        render_info.context['props']['extra_info']['on_server'] = False
         # Convert props to json
-        render_info.context['props'] = json.dumps(
-            render_info.context['props'])
+        render_info.context['props']['extra_info'] = json.dumps(
+            render_info.context['props']['extra_info'])
 
         # Create the html and return
         return render(request, render_info.path_to_template, render_info.context)
