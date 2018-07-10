@@ -1,3 +1,4 @@
+{% raw %}
 from django.core.serializers.json import DjangoJSONEncoder
 from django.template import Library
 from json import dumps as json_dumps
@@ -29,10 +30,11 @@ def json(data):
         '>': '\\u003e',
         '\u2028': '\\u2028',
         '\u2029': '\\u2029'}
-    json_str = data  # json_dumps(data, cls=DjangoJSONEncoder)
+    json_str = json_dumps(data, cls=DjangoJSONEncoder)
     # print(json_str)
 
     for (c, d) in unsafe_chars.items():
         json_str = json_str.replace(c, d)
 
     return json_str
+{% endraw %}

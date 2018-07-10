@@ -14,11 +14,11 @@ const BundleTracker = require ('webpack-bundle-tracker');
 const ReactLoadablePlugin = require ('react-loadable/webpack')
   .ReactLoadablePlugin;
 
-module.exports = paths => {
+module.exports = paths => { 
   // Webpack uses `publicPath` to determine where the app is being served from.
   const publicPath = paths.filePublicAccessPath;
   // `publicUrl` is just like `publicPath`, but we will provide it to our app
-  // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
+  // as %PUBLIC_URL% in `index_demonstration.html` and `process.env.PUBLIC_URL` in JavaScript.
   // Omit trailing slash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
   const publicUrl = publicPath.slice (0, -1);
   // Get environment variables to inject into our app.
@@ -26,6 +26,7 @@ module.exports = paths => {
   // This is the development configuration.
   // It is focused on developer experience and fast rebuilds.
   // The production configuration is different and lives in a separate file.
+  console.log(paths.appRoot + '/webpack-stats.json')
   return {
     // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
     // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
@@ -211,12 +212,12 @@ module.exports = paths => {
       ],
     },
     plugins: [
-      // Makes some environment variables available in index.html.
-      // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
+      // Makes some environment variables available in index_demonstration.html.
+      // The public URL is available as %PUBLIC_URL% in index_demonstration.html, e.g.:
       // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
       // In development, this will be an empty string.
       new InterpolateHtmlPlugin (env.raw),
-      // Generates an `index.html` file with the <script> injected.
+      // Generates an `index_demonstration.html` file with the <script> injected.
       new HtmlWebpackPlugin ({
         inject: true,
         template: paths.appHtml,
@@ -244,9 +245,9 @@ module.exports = paths => {
       // You can remove this if you don't use Moment.js:
       new webpack.IgnorePlugin (/^\.\/locale$/, /moment$/),
       // Saves information about the webpack output for use by Django
-      new BundleTracker ({filename: paths.appRoot + '/webpack-stats.json'}),
-      new ReactLoadablePlugin ({
-        filename: paths.appRoot + '/react-loadable.json',
+      new BundleTracker({filename: paths.appRoot + '/webpack-stats.json'}),
+      new ReactLoadablePlugin({
+        filename:  paths.appRoot + '/react-loadable.json',
       }),
     ],
     // Some libraries import Node modules but don't use them in the browser.

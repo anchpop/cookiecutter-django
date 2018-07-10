@@ -29,22 +29,14 @@ var argv = require ('minimist') (process.argv.slice (2));
 const fs = require ('fs-extra');
 const chalk = require ('chalk');
 const webpack = require ('webpack');
-const WebpackDevServer = require ('webpack-dev-server');
 var browserSync = require ('browser-sync').create ();
-const clearConsole = require ('react-dev-utils/clearConsole');
 const checkRequiredFiles = require ('react-dev-utils/checkRequiredFiles');
 const {
   choosePort,
-  createCompiler,
-  prepareProxy,
-  prepareUrls,
 } = require ('react-dev-utils/WebpackDevServerUtils');
-const openBrowser = require ('react-dev-utils/openBrowser');
 const paths = require ('../webpack_config/paths') (argv['_'][0]);
 const config = require ('../webpack_config/webpack.config.dev') (paths);
 
-const useYarn = fs.existsSync (paths.yarnLockFile);
-const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
 if (!checkRequiredFiles ([paths.appHtml, paths.appIndexJs])) {
@@ -70,26 +62,30 @@ if (process.env.HOST) {
 // We attempt to use the default port but if it is busy, we offer the user to
 // run on a different port. `choosePort()` Promise resolves to the next free port.
 choosePort (HOST, DEFAULT_PORT).then (port => {
-  if (port == null) {
-    // We have not found a port.
-    return;
-  }
-  copyPublicFolder ();
-  const pack = new webpack (config);
-  console.log ('Build folder: ' + paths.appBuild);
+    if (port == null) {
+        // We have not found a port.
+        return;
+    }
+    copyPublicFolder ();
+    let compiler = webpack(config);
+    compiler.watch({}, (err, stats) => {
+        if (err) {
+            console.log("Error while watching:", err)
+        }
+    });
+    console.log ('Build folder: ' + paths.appBuild);
 
-  // watching `paths.appBuild + "\\**\\*"` will react to any changes in the build directory
-  let watchPath = paths.appBuild + '\\**\\*';
-  console.log ('Watching for changes at: ' + watchPath);
-  browserSync.init ({
-    watch: true,
-    files: [
-      watchPath,
-      paths.appBuild + '/*.css',
-      paths.appTemplates + '*.html',
-    ],
-    proxy: 'localhost:8000',
-  });
+    // watching `paths.appBuild + "\\**\\*"` will cause us to react to any changes in the build directory
+    let watchPath = paths.appBuild + '\\**\\*';
+    browserSync.init ({
+        watch: true,
+        files: [
+        watchPath,
+        paths.appBuild + '/*.css',
+        paths.appTemplates + '*.html',
+        ],
+        proxy: 'localhost:8000',
+    });
 });
 
 function copyPublicFolder () {

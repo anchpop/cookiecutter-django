@@ -24,7 +24,7 @@ module.exports = (paths) => {
   // Source maps are resource heavy and can cause out of memory issue for large source files.
   const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
   // `publicUrl` is just like `publicPath`, but we will provide it to our app
-  // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
+  // as %PUBLIC_URL% in `index_demonstration.html` and `process.env.PUBLIC_URL` in JavaScript.
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
   const publicUrl = publicPath.slice(0, -1);
   // Get environment variables to inject into our app.
@@ -236,13 +236,12 @@ module.exports = (paths) => {
       ],
     },
     plugins: [
-      // Makes some environment variables available in index.html.
-      // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
+      // Makes some environment variables available in index_demonstration.html.
+      // The public URL is available as %PUBLIC_URL% in index_demonstration.html, e.g.:
       // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-      // In production, it will be an empty string unless you specify "homepage"
-      // in `package.json`, in which case it will be the pathname of that URL.
+      // 
       new InterpolateHtmlPlugin(env.raw),
-      // Generates an `index.html` file with the <script> injected.
+      // Generates an `index_demonstration.html` file with the <script> injected.
       new HtmlWebpackPlugin({
         inject: true,
         template: paths.appHtml,
@@ -291,7 +290,7 @@ module.exports = (paths) => {
       }),
       // Generate a manifest file which contains a mapping of all asset filenames
       // to their corresponding output file so that tools can pick it up without
-      // having to parse `index.html`.
+      // having to parse `index_demonstration.html`.
       new ManifestPlugin({
         fileName: 'asset-manifest.json',
       }),
@@ -318,7 +317,7 @@ module.exports = (paths) => {
         },
         minify: true,
         // For unknown URLs, fallback to the index page
-        navigateFallback: publicUrl + '/index.html',
+        navigateFallback: publicUrl + '/',
         // Ignores URLs starting from /__ (useful for Firebase):
         // https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
         navigateFallbackWhitelist: [/^(?!\/__).*/],

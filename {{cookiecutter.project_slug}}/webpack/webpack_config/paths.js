@@ -57,7 +57,7 @@ module.exports = (current_app) => {
     filePublicAccessPath: '/static/bundle/',
     appPublic: resolveProjectApp('public'),
     appTemplates: resolveProjectApp('templates/' + current_app),
-    appHtml: resolveProjectApp('public/index.html'),
+    appHtml: resolveProjectApp('public/index_demonstration.html'),
     appIndexJs: resolveProjectApp('src/index.js'),
     appPackageJson: resolveProjectBase('package.json'),
     appSrc: resolveProjectApp('src'),
