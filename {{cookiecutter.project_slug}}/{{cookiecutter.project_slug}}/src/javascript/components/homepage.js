@@ -30,10 +30,10 @@ function CollectionView(props) {
   return (
     <div>
       <div>
-        <AppBar position="static" color="default">
+        <AppBar color="default">
           <Toolbar>
             <Typography variant="title" color="inherit">
-              Cookiecutter-Django: React Edition
+              Welcome to {{cookiecutter.project_name}} <span role="img" aria-label="sunglasses">😎</span>
             </Typography>
           </Toolbar>
         </AppBar>

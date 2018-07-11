@@ -62,7 +62,7 @@ function RandomNumberCard(props) {
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <Typography className={classes.title} color="textSecondary">
-            A random number is displayed here. Try refreshing the page!
+            A random number is displayed here. Refresh the page for a new one!
           </Typography>
           <Typography
             className={classes.number}
@@ -71,11 +71,11 @@ function RandomNumberCard(props) {
           >
             {props.randomNumber}
           </Typography>
-          <Typography component="p" className={classes.hashline}>
+          <Typography  className={classes.hashline}>
             hash: <Typography className={classes.hash} color="textSecondary" >{props.hash}</Typography>
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            This is a demonstration of how you can use Redux and Reselect together
+            This is a demonstration of how you can use Redux and Reselect together.
           </Typography>
         </CardContent>
       </Card>
