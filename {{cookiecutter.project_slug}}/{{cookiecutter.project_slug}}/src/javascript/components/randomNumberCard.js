@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from 'emotion';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
+
+import { getHash } from '../selectors'
 
 const styles = {
   card: {
@@ -28,55 +30,70 @@ const styles = {
   title: {
     marginBottom: 16,
     fontSize: 14,
-    whiteSpace: 'nowrap',
-    overflow: 'hidden'
   },
-  name: {
+  number: {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
+  },
+  hashline: {
+    marginBottom: 16,
+    fontSize: 14,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  },
+  hash: {
+    display: "inline"
   },
   cardActions: {
     flex: 1
   },
   pos: {
-    marginBottom: 12
+    marginBottom: 12,
   }
 };
 
-function SimpleCard(props) {
+function RandomNumberCard(props) {
   const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <Typography className={classes.title} color="textSecondary">
-            @{props.owner}'s project
+            A random number is displayed here. Try refreshing the page!
           </Typography>
           <Typography
-            className={classes.name}
+            className={classes.number}
             variant="headline"
             component="h2"
           >
-            {props.collectionName}
+            {props.randomNumber}
+          </Typography>
+          <Typography component="p" className={classes.hashline}>
+            hash: <Typography className={classes.hash} color="textSecondary" >{props.hash}</Typography>
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            {props.numOfImages} collections
+            This is a demonstration of how you can use Redux and Reselect together
           </Typography>
-          <Typography component="p">{props.description}</Typography>
         </CardContent>
-        <CardActions className={classes.cardActions}>
-          <Button size="small">View</Button>
-        </CardActions>
       </Card>
     </div>
   );
 }
 
-SimpleCard.propTypes = {
+RandomNumberCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SimpleCard);
+
+const mapStateToProps = state => {
+  console.log("State:", state)
+  return {
+  randomNumber: state.random_number,
+  hash: getHash(state)
+}}
+
+
+export default connect(mapStateToProps)(withStyles(styles)(RandomNumberCard));

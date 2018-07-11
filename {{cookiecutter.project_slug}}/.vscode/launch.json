@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "{{cookiecutter.project_slug}}",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:8000/",
+        "webRoot": "${workspaceRoot}/{{cookiecutter.project_slug}}/src/",
+        "sourceMapPathOverrides": {
+          "webpack:///src/*": "${webRoot}/*",
+          "static/static/js/*": "${webRoot}/*"
+      }
+    }]
+  }

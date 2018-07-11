@@ -13,6 +13,7 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const BundleTracker = require('webpack-bundle-tracker')
 const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = (paths) => {
   // Webpack uses `publicPath` to determine where the app is being served from.
@@ -335,6 +336,8 @@ module.exports = (paths) => {
       new ReactLoadablePlugin({
         filename:  paths.appRoot + '/react-loadable.json',
       }),
+      new FriendlyErrorsWebpackPlugin({
+        clearConsole: false}),
     ],
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

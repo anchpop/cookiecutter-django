@@ -25,7 +25,9 @@ You should have Python (Preferably some virtualenv), yarn, and PostgreSQL instal
     createdb {{cookiecutter.project_slug}}                        # create a postgresql database
     python manage.py migrate               # initialize the database
 
-Then, for the email backend, we use Mailhog. So:
+To debug your Javascript using Visual Studio Code, get the (Debugger for Chrome)[https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome] extension, open the project is VSCode, select the {{cookiecutter.project_slug}} configuration and press start.
+
+We use Mailhog for our email backend while developing locally. So:
 
 1. [Download Mailhog for your OS](https://github.com/mailhog/MailHog/releases), 
 

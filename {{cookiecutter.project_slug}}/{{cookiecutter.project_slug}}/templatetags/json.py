@@ -30,7 +30,8 @@ def json(data):
         '>': '\\u003e',
         '\u2028': '\\u2028',
         '\u2029': '\\u2029'}
-    json_str = json_dumps(data, cls=DjangoJSONEncoder)
+    json_str = data
+    #json_dumps(data, cls=DjangoJSONEncoder)
     # print(json_str)
 
     for (c, d) in unsafe_chars.items():

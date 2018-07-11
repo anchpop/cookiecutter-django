@@ -98,8 +98,8 @@ class ReactView(View):
         # Set the `on_server` property to False, because we'll be sending this to the client
         render_info.context['props']['extra_info']['on_server'] = False
         # Convert props to json
-        render_info.context['props']['extra_info'] = json.dumps(
-            render_info.context['props']['extra_info'])
+        render_info.context['props'] = json.dumps(
+            render_info.context['props'])
 
         # Create the html and return
         return render(request, render_info.path_to_template, render_info.context)

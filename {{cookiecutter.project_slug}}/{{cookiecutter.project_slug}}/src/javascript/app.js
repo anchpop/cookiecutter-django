@@ -1,44 +1,40 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Route, Switch, StaticRouter, BrowserRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { css } from 'emotion';
-import Button from '@material-ui/core/Button';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import { Route, Switch, StaticRouter, Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Loadable from 'react-loadable';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-import LoadingIcon from './loadingIcon';
+import LoadingIcon from './components/loadingIcon';
 
-const CollectionView = Loadable({
+const Homepage = Loadable({
   loader: () =>
-    import('./collectionView' /* webpackChunkName: "collectionView" */),
+    import('./components/homepage' /* webpackChunkName: "collectionView" */),
   loading: LoadingIcon
 });
 
-const ProjectsAndCollections = Loadable({
+const About = Loadable({
   loader: () =>
-    import('./projectsAndCollections' /* webpackChunkName: "projectsAndCollections" */),
+    import('./components/about' /* webpackChunkName: "projectsAndCollections" */),
   loading: LoadingIcon
 });
 
 class App extends React.Component {
   render() {
     let contents = (
-      <Switch>
-        <Route exact path="/" component={ProjectsAndCollections} />
-        <Route exact path="/collection" component={CollectionView} />
-      </Switch>
+      <React.Fragment>
+        <CssBaseline />
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/about" component={About} />
+        </Switch>
+      </React.Fragment>
     );
     let context = {};
     if (!this.props.on_server) {
       return (
-        <BrowserRouter basename={this.props.base_url}>{contents}</BrowserRouter>
+        <Router basename={this.props.base_url} history={this.props.history}>
+          {contents}
+        </Router>
       );
     } else {
       return (

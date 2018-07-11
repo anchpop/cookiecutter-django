@@ -1,3 +1,3 @@
-import * as collections from './extra_info';
+import * as nonce from './setNonce';
 
-export { collections };
+export { nonce };
