@@ -11,7 +11,7 @@ class Root extends React.Component {
     // https://material-ui.com/guides/server-rendering/ 
     // Server-side rendering adds some CSS to the page, which will mess things up if we leave it
     // So if we're on the client, remove it
-    if (!this.props.on_server) {
+    if (!this.props.extra_info.on_server) {
       const jssStyles = document.getElementById('jss-server-side');
       if (jssStyles && jssStyles.parentNode) {
         jssStyles.parentNode.removeChild(jssStyles);

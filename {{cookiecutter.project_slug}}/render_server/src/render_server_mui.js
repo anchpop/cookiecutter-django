@@ -88,7 +88,6 @@ function handleRender (toRenderFilename, props, pathToReactLoadable, res) {
       // Render the component to a string.
       const html = renderToString (toRender);
       let bundles = getBundles (stats, modules);
-      console.log ('bundles:', bundles);
 
       //let styles = bundles.filter(bundle => bundle.file.endsWith('.css'));
       //let scripts = bundles.filter(bundle => bundle.file.endsWith('.js'));

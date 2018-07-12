@@ -8,14 +8,14 @@ import LoadingIcon from './components/loadingIcon';
 
 const Homepage = Loadable({
   loader: () =>
-    import('./components/homepage' /* webpackChunkName: "collectionView" */),
-  loading: LoadingIcon
+    import('./components/homepage' /* webpackChunkName: "homepage" */),
+    loading: LoadingIcon
 });
 
 const About = Loadable({
   loader: () =>
-    import('./components/about' /* webpackChunkName: "projectsAndCollections" */),
-  loading: LoadingIcon
+    import('./components/about' /* webpackChunkName: "about" */),
+    loading: LoadingIcon
 });
 
 class App extends React.Component {
@@ -51,9 +51,9 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loaded_at_url: state.loaded_at_url,
-  base_url: state.base_url,
-  on_server: state.on_server
+  loaded_at_url: state.extra_info.loaded_at_url,
+  base_url: state.extra_info.base_url,
+  on_server: state.extra_info.on_server
 });
 
 export default connect(mapStateToProps)(App);
