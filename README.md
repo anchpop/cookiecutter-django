@@ -24,6 +24,7 @@ a production-ready React SPA with django.
   - Routing with [React Router](https://github.com/ReactTraining/react-router)
   - State management with [Redux](https://redux.js.org/)
   - Live reloading with [BrowserSync](https://browsersync.io/)
+  - Rapid component development with [Storybook](https://storybook.js.org/)
   - Production builds generate PWAs
   - Server-side rendering using a Node render server
   - [12-Factor](http://12factor.net/) based settings via

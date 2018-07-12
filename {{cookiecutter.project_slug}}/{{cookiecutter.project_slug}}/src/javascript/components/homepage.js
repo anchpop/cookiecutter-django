@@ -38,7 +38,7 @@ const styles = theme => ({
   }
 });
 
-function CollectionView(props) {
+function Homepage(props) {
   const { classes } = props;  
   return (
     <div>
@@ -66,6 +66,9 @@ function CollectionView(props) {
               </Typography>
               <Typography component="p">
                 Don't forget to check out <Typography className={classes.code}>yarn storybook</Typography>!
+              </Typography>
+              <Typography component="p">
+                It's highly reccomended you test server-side rendering locally somewhat often. Instructions on how to do so are in the auto-generated <Typography className={classes.code}>readme.md</Typography>
               </Typography>
             </Paper>
           </Grid>
@@ -102,11 +105,11 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-CollectionView.propTypes = {
+Homepage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(CollectionView));
+)(withStyles(styles)(Homepage));

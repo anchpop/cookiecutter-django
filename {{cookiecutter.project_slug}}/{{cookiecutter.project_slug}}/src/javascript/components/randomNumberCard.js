@@ -71,7 +71,7 @@ function RandomNumberCard(props) {
           >
             {props.randomNumber}
           </Typography>
-          <Typography  className={classes.hashline}>
+          <Typography  className={classes.hashline} >
             hash: <Typography className={classes.hash} color="textSecondary" >{props.hash}</Typography>
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
