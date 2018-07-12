@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, StaticRouter, Router } from 'react-router-dom';
+import { Route, Switch, StaticRouter, Router, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Loadable from 'react-loadable';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -32,9 +32,9 @@ class App extends React.Component {
     let context = {};
     if (!this.props.on_server) {
       return (
-        <Router basename={this.props.base_url} history={this.props.history}>
+        <BrowserRouter basename={this.props.base_url}>
           {contents}
-        </Router>
+        </BrowserRouter>
       );
     } else {
       return (
