@@ -49,7 +49,7 @@ We use Mailhog for our email backend while developing locally. So:
 
 Start a development server: `python manage.py runserver`. If Django complains about an incorrect database password, set the `auth-method` in your [`pg_hba.conf`](https://www.postgresql.org/docs/9.1/static/auth-pg-hba-conf.html) to `trust` (It's probably `md5` right now). On Windows and Postgres 10, the default location of this file file is in `C:\Program Files\PostgreSQL\10\data`.
 
-Watch the frontend react files and automatically update when they change: `yarn start <yourapp>`. To make an optimized build for production, use `yarn build <yourapp>`. If you want to build the `{{cookiecutter.project_slug}}` app, just use `yarn start`. To make an optimized production build, use `yarn build`.
+Watch the frontend react files and update update when they change: `yarn start`. To make an optimized build for production, use `yarn build` (`yarn start` will only watch `{{cookiecutter.project_slug}}`. To watch another use use `yarn start <yourapp>`. The same applies to `yarn build`).
 
 
 **Server Side Rendering**: 
