@@ -54,7 +54,7 @@ function CollectionView(props) {
             </Typography>
             <Typography component="p">
               I wanted a UI toolkit built in, server side rendering, and routing, and I couldn't find a suitable way online. I also included optimized, code split, PWA-enabled builds. 
-              In addition I threw in some things almost all react apps will use, such as Redux and Reselect, and some tools I just like, like Storybook and crypto-js.
+              In addition I threw in some things almost all React apps will use, such as Redux and Reselect, and some tools I just like, like Storybook and crypto-js.
             </Typography>
           </Paper>
           </Grid>
