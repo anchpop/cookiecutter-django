@@ -1,4 +1,4 @@
-# Cookiecutter Django
+# Cookiecutter Django: React edition
 
 
 Powered by [Cookiecutter](https://github.com/audreyr/cookiecutter),
