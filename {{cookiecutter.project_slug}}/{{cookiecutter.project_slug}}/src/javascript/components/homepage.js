@@ -74,7 +74,7 @@ function Homepage(props) {
                 How to get started
               </Typography>
               <Typography component="p" paragraph={true}>
-                This fie is located in <Typography className={classes.code}>{{cookiecutter.project_slug}}/{{cookiecutter.project_slug}}/src/javascript/components/homepage.js</Typography>
+                This file is located in <Typography className={classes.code}>{{cookiecutter.project_slug}}/{{cookiecutter.project_slug}}/src/javascript/components/homepage.js</Typography>
               </Typography>
               <Typography component="p" paragraph={true}>
                 It is included by <Typography className={classes.code}>{{cookiecutter.project_slug}}/{{cookiecutter.project_slug}}/src/javascript/app.js</Typography>, which is where you should start looking if you want to start working on the frontend.
