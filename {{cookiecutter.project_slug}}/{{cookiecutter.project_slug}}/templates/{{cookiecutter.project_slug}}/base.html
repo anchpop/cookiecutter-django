@@ -37,6 +37,7 @@
   </script>
   <!-- React JS -->
   {% for bundle in bundles_js %}
+    <!-- Bundle: {{bundle}} -->
     {% render_bundle bundle config=app_name_upper extension='-css' %}  
   {% endfor %}
 
