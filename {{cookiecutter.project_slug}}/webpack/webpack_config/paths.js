@@ -53,8 +53,8 @@ module.exports = (current_app) => {
   return {
     appRoot: resolveProjectApp(''), 
     dotenv: resolveProjectBase('.env'),
-    appBuild: resolveProjectApp('static/bundle'),
-    filePublicAccessPath: '/static/bundle/',
+    appBuild: resolveProjectApp('static' + current_app + '/bundle'),
+    filePublicAccessPath: '/static' + current_app + '/bundle/',
     appPublic: resolveProjectApp('public'),
     appTemplates: resolveProjectApp('templates/' + current_app),
     appHtml: resolveProjectApp('public/index_demonstration.html'),

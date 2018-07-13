@@ -98,7 +98,7 @@ WEBPACK_LOADER = {}
 for react_app in REACT_APPS:
     WEBPACK_LOADER[react_app.upper()] = {
         'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'bundle/',  # end with slash
+        'BUNDLE_DIR_NAME': react_app + '/bundle/',  # end with slash
         'STATS_FILE': os.path.join(str(ROOT_DIR.path(react_app).path('')), 'webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
