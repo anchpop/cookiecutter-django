@@ -93,6 +93,12 @@
   "engines": {
     "node": ">=0.8.0"
   },
+  "lint-staged": {
+    "**/src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
     "start": "node webpack/webpack_scripts/start.js",
